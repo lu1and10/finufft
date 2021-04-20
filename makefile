@@ -192,9 +192,9 @@ endif
 # build all examples (single-prec codes separate, and not all have one)...
 EXAMPLES := $(basename $(wildcard examples/*.*))
 # ...except only build threadsafe1d1 if user tests that (implying FFTW>=3.3.6):
-ifeq (,$(findstring FFTW_PLAN_SAFE,$(CXXFLAGS)))
-TMP := $(filter-out examples/threadsafe1d1,$(EXAMPLES))
-EXAMPLES := $(TMP)
+#ifeq (,$(findstring FFTW_PLAN_SAFE,$(CXXFLAGS)))
+#TMP := $(filter-out examples/threadsafe1d1,$(EXAMPLES))
+#EXAMPLES := $(TMP)
 endif
 examples: $(EXAMPLES)
 ifneq ($(MINGW),ON)
