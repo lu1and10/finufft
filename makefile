@@ -193,8 +193,8 @@ endif
 EXAMPLES := $(basename $(wildcard examples/*.*))
 # ...except only build threadsafe1d1 if user tests that (implying FFTW>=3.3.6):
 #ifeq (,$(findstring FFTW_PLAN_SAFE,$(CXXFLAGS)))
-#  TMP := $(filter-out $basename/examples/threadsafe1d1,$(EXAMPLES))
-#  EXAMPLES := $(TMP)
+TMP := $(filter-out examples/threadsafe1d1, $(EXAMPLES))
+EXAMPLES := $(TMP)
 #endif
 examples: $(EXAMPLES)
 ifneq ($(MINGW),ON)
@@ -461,3 +461,6 @@ else
   # Windows-WSL...
 	del matlab\finufft_plan.m matlab\finufft.cpp matlab\finufft.mex*
 endif
+
+print-%:
+	@echo '$*=$($*)'
