@@ -30,7 +30,7 @@ CFLAGS := -O3 -funroll-loops -march=native -fcx-limited-range
 FFLAGS := $(CFLAGS)
 CXXFLAGS := $(CFLAGS)
 # put this in your make.inc if you have FFTW>=3.3.5 and want thread-safe use...
-CXXFLAGS += -DFFTW_PLAN_SAFE
+#CXXFLAGS += -DFFTW_PLAN_SAFE
 # FFTW base name, and math linking...
 FFTWNAME = fftw3
 # linux default is fftw3_omp, since 10% faster than fftw3_threads...
@@ -191,10 +191,10 @@ endif
 # examples (C++/C) -----------------------------------------------------------
 # build all examples (single-prec codes separate, and not all have one)...
 # ...except only build threadsafe1d1 if user tests that (implying FFTW>=3.3.6):
+EXAMPLES = $(basename $(wildcard examples/*.*))
 ifeq (,$(findstring FFTW_PLAN_SAFE,$(CXXFLAGS)))
-  EXAMPLES = $(filter-out examples/threadsafe1d1, $(basename $(wildcard examples/*.*)))
-else
-  EXAMPLES = $(basename $(wildcard examples/*.*))
+  TMP := $(filter-out examples/threadsafe1d1,$(EXAMPLES))
+  EXAMPLES := $(TMP)
 endif
 examples: $(EXAMPLES)
 ifneq ($(MINGW),ON)
