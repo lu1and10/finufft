@@ -193,7 +193,7 @@ endif
 # ...except only build threadsafe1d1 if user tests that (implying FFTW>=3.3.6):
 EXAMPLES = $(basename $(wildcard examples/*.*))
 ifeq (,$(findstring FFTW_PLAN_SAFE,$(CXXFLAGS)))
-  TMP := $(filter-out examples/threadsafe1d1,$(EXAMPLES))
+  TMP = $(filter-out examples/threadsafe1d1,$(EXAMPLES))
   EXAMPLES := $(TMP)
 endif
 examples: $(EXAMPLES)
