@@ -194,7 +194,7 @@ endif
 EXAMPLES = $(basename $(wildcard examples/*.*))
 ifeq (,$(findstring FFTW_PLAN_SAFE,$(CXXFLAGS)))
   TMP = $(filter-out examples/threadsafe1d1,$(EXAMPLES))
-  EXAMPLES := $(TMP)
+  EXAMPLES = $(TMP)
 endif
 examples: $(EXAMPLES)
 ifneq ($(MINGW),ON)
