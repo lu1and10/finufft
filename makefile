@@ -392,7 +392,7 @@ python: $(STATICLIB) $(DYNLIB)
 
 # general python packaging wheel for all OSs without wheel being fixed(required shared libs are not included in wheel)
 python-dist: $(STATICLIB) $(DYNLIB)
-	(export FINUFFT_DIR=$(shell pwd); cd python; $(PYTHON) -m pip wheel . -w wheelhouse)
+	(export FINUFFT_DIR=$(shell pwd); cd python; $(PYTHON) -m pip wheel --wheel-dir=wheelhouse finufft)
 
 # python packaging wheel for macosx with wheel being fixed(all required shared libs are included in wheel)
 wheel: $(STATICLIB) $(DYNLIB)
