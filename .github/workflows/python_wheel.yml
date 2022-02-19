@@ -147,7 +147,6 @@ jobs:
         architecture: 'x64'
     - run: |
         .\.github\workflows\python_build_win.ps1
-        .\.github\workflows\python_test_win.ps1
 
     - name: Build and Test Python 3.8
       uses: actions/setup-python@v2
