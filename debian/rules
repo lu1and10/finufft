@@ -1,0 +1,10 @@
+#!/usr/bin/make -f
+
+%:
+	dh $@
+
+override_dh_auto_build:
+	$(MAKE) lib
+
+override_dh_auto_install:
+	$(MAKE) install DESTDIR=`pwd`/debian/libfinufft-dev

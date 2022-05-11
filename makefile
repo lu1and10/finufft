@@ -14,6 +14,7 @@
 # Garrett Wright, Joakim Anden, Barnett: dual-prec lib build, Jun-Jul'20.
 # Windows compatibility, jonas-kr, Sep '20.
 
+prefix = /usr
 # Compiler (CXX), and linking from C, fortran. We use GCC by default...
 CXX = g++
 CC = gcc
@@ -470,3 +471,18 @@ else
   # Windows-WSL...
 	del matlab\finufft_plan.m matlab\finufft.cpp matlab\finufft.mex*
 endif
+
+install: lib
+	install lib/*finufft*.so $(DESTDIR)$(prefix)/lib
+	install include/finufft.h include/spread_opts.h include/dataTypes.h \
+		include/finufft.fh include/fftw_defs.h include/finufft_plan_eitherprec.h \
+		include/nufft_opts.h include/finufft_eitherprec.h \
+		$(DESTDIR)$(prefix)/include
+
+uninstall:
+	-rm -f $(DESTDIR)$(prefix)/lib/*finufft*.so
+	-rm -f $(DESTDIR)$(prefix)/include/finufft*
+	-rm -f $(DESTDIR)$(prefix)/include/spread_opts.h
+	-rm -f $(DESTDIR)$(prefix)/include/dataTypes.h
+	-rm -f $(DESTDIR)$(prefix)/include/fftw_defs.h
+	-rm -f $(DESTDIR)$(prefix)/include/nufft_opts.h

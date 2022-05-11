@@ -1,0 +1,19 @@
+Source: finufft
+Section: libs
+Priority: optional
+Maintainer: Libin Lu <llu@flatironinstitute.org>
+Build-Depends: libfftw3-dev,
+               debhelper-compat (= 13)
+Vcs-Git: https://github.com/flatironinstitute/finufft.git
+Vcs-Browser: https://github.com/flatironinstitute/finufft
+Homepage: https://github.com/flatironinstitute/finufft
+Standards-Version: 4.6.0
+
+Package: libfinufft-dev
+Architecture: any
+Pre-Depends: ${misc:Pre-Depends}
+Depends: ${misc:Depends}, ${shlibs:Depends}
+Multi-Arch: same
+Description: A multi-threaded library to compute efficiently the three
+ most common types of nonuniform fast Fourier transform(NUFFT) to a specified precision,
+ in one, two, or three dimensions, on a multi-core shared-memory machine.
