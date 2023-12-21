@@ -72,7 +72,7 @@ jobs:
           path: ${{runner.workspace}}/finufft/build/*finufft*
 
       - name: Pack For Release
-        if: ${{ (github.ref == 'refs/heads/master')
+        if: github.ref == 'refs/heads/master'
         run: |
           cd build
           if [[ "${{ matrix.os }}" == "windows-2022" ]]
@@ -85,7 +85,7 @@ jobs:
 
       - name: Publish
         uses: softprops/action-gh-release@v1
-        if: ${{ (github.ref == 'refs/heads/master')
+        if: github.ref == 'refs/heads/master'
         with:
           tag_name: "snapshot-${{ github.sha }}"
           files: |
