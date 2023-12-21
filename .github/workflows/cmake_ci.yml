@@ -73,6 +73,7 @@ jobs:
 
       - name: Pack For Release
         if: github.ref == 'refs/heads/master'
+        shell: bash
         run: |
           cd build
           if [[ "${{ matrix.os }}" == "windows-2022" ]]
