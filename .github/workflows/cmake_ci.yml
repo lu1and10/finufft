@@ -78,9 +78,9 @@ jobs:
           cd build
           if [[ "${{ matrix.os }}" == "windows-2022" ]]
           then
-            7z a ../${{matrix.os}}-${{matrix.compiler}}-finufft-lib *finufft*
+            7z a ../${{matrix.os}}-${{matrix.compiler}}-finufft-lib.zip *finufft*
           else
-            tar czvf ../${{matrix.os}}-${{matrix.compiler}}-finufft-lib *finufft*
+            tar czvf ../${{matrix.os}}-${{matrix.compiler}}-finufft-lib.tar.gz *finufft*
           fi
           cd -
 
