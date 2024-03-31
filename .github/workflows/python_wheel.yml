@@ -39,7 +39,7 @@ jobs:
   MacOS:
     runs-on: macos-latest
     env:
-      MACOSX_DEPLOYMENT_TARGET: 11.0
+      MACOSX_DEPLOYMENT_TARGET: 12.0
 
     steps:
     - uses: actions/checkout@v4
