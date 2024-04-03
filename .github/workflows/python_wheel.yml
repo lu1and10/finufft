@@ -40,7 +40,6 @@ jobs:
     runs-on: macos-latest
     env:
       MACOSX_DEPLOYMENT_TARGET: 12.0
-      _PYTHON_HOST_PLATFORM: macosx-12.0-x86_64
       ARCHFLAGS: -arch x86_64
       
     steps:
