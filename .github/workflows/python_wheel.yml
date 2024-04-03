@@ -40,7 +40,9 @@ jobs:
     runs-on: macos-latest
     env:
       MACOSX_DEPLOYMENT_TARGET: 10.9
-
+      _PYTHON_HOST_PLATFORM: macosx-10.9-x86_64
+      ARCHFLAGS: -arch x86_64
+      
     steps:
     - uses: actions/checkout@v4
 
@@ -131,7 +133,7 @@ jobs:
         /Library/Frameworks/Python.framework/Versions/3.12/bin/python3 -m pip wheel python/finufft -w wheelhouse
 
         PYTHON_BIN=/Library/Frameworks/Python.framework/Versions/3.12/bin/
-        $PYTHON_BIN/python3 -m pip install delocate==0.10.7
+        $PYTHON_BIN/python3 -m pip install delocate
         ls wheelhouse/finufft*.whl | xargs -n1 $PYTHON_BIN/delocate-wheel -w fixed_wheel/
         /Library/Frameworks/Python.framework/Versions/3.6/bin/python3 -m pip install --pre finufft -f fixed_wheel/
         /Library/Frameworks/Python.framework/Versions/3.6/bin/python3 python/finufft/test/run_accuracy_tests.py
