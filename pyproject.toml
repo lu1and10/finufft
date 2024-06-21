@@ -32,4 +32,4 @@ input = "python/finufft/finufft/__init__.py"
 
 [tool.cibuildwheel]
 # Necessary to see build output from the actual compilation
-build-verbosity = 1
+build-verbosity = 3
