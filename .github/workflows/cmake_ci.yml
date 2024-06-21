@@ -78,7 +78,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: ${{matrix.os}}-${{matrix.compiler}}-finufft-lib
-          path: ${{runner.workspace}}/finufft/build/*finufft*
+          path: ${{runner.workspace}}/finufft/build/lib*
 
       - name: Pack For Release
         if: startsWith(github.ref, 'refs/tags/') && github.event_name == 'release' && github.event.action == 'published'
