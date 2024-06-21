@@ -209,6 +209,7 @@ if (FINUFFT_USE_CPU)
 
     add_library(finufft_static STATIC src/utils_precindep.cpp contrib/legendre_rule_fast.cpp)
     set_finufft_options(finufft_static)
+    set_target_properties(finufft_static PROPERTIES OUTPUT_NAME "finufft")
     target_link_libraries(finufft_static PUBLIC finufft_f32 finufft_f64)
     # windows does not have a math library, so we need to exclude it
     if (NOT WIN32)
