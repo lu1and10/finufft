@@ -34,6 +34,5 @@ input = "python/finufft/finufft/__init__.py"
 # Necessary to see build output from the actual compilation
 build-verbosity = 3
 
-[tool.bdist_wheel]
-python-tag = "py3"
-abi-tag = "none"
+[tool.distutils.bdist_wheel]
+universal = true
