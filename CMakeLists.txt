@@ -193,6 +193,7 @@ if (FINUFFT_USE_CPU)
     endif ()
 
     add_library(finufft SHARED src/utils_precindep.cpp contrib/legendre_rule_fast.cpp)
+    set_target_properties(finufft PROPERTIES LIBRARY_OUTPUT_DIRECTORY lib ARCHIVE_OUTPUT_DIRECTORY lib RUNTIME_OUTPUT_DIRECTORY lib)
     target_compile_definitions(finufft PRIVATE dll_EXPORTS FINUFFT_DLL)
     set_finufft_options(finufft)
     if (NOT WIN32)
