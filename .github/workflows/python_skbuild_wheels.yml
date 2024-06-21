@@ -30,7 +30,7 @@ jobs:
             MACOSX_DEPLOYMENT_TARGET=13
 
       - name: change python tag and abi tag
-        run: python -m pip wheel tags --python-tag=py3 --abi-tag=none ./wheelhouse/*.whl
+        run: wheel tags --python-tag=py3 --abi-tag=none ./wheelhouse/*.whl
 
       - uses: actions/upload-artifact@v4
         with:
