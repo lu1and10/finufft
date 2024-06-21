@@ -30,13 +30,11 @@ jobs:
             MACOSX_DEPLOYMENT_TARGET=13
 
       - name: change python tag and abi tag
-        run: python -m wheel tags --python-tag=py3 --abi-tag=none ./wheelhouse/*.whl
+        run: |
+          python -m pip install wheel==0.43.0
+          python -m wheel tags --python-tag=py3 --abi-tag=none ./wheelhouse/*.whl
 
       - uses: actions/upload-artifact@v4
         with:
           name: cibw-wheels-${{ matrix.os }}-${{ strategy.job-index }}
           path: ./wheelhouse/*none*.whl
-
-      - name: Setup tmate session
-        if: ${{ failure() }}
-        uses: mxschmitt/action-tmate@v3
