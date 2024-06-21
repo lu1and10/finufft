@@ -33,6 +33,7 @@ jobs:
         run: |
           python3 -m pip install wheel==0.43.0
           python3 -m wheel tags --python-tag=py3 --abi-tag=none ./wheelhouse/*.whl
+        shell: bash
 
       - uses: actions/upload-artifact@v4
         with:
