@@ -207,8 +207,8 @@ if (FINUFFT_USE_CPU)
     target_include_directories(finufft PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>)
     target_include_directories(finufft SYSTEM INTERFACE $<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>)
 
-    set_target_properties(finufft_static PROPERTIES OUTPUT_NAME "finufft" LIBRARY_OUTPUT_DIRECTORY lib-static ARCHIVE_OUTPUT_DIRECTORY lib-static RUNTIME_OUTPUT_DIRECTORY lib-static)
     add_library(finufft_static STATIC src/utils_precindep.cpp contrib/legendre_rule_fast.cpp)
+    set_target_properties(finufft_static PROPERTIES OUTPUT_NAME "finufft" LIBRARY_OUTPUT_DIRECTORY lib-static ARCHIVE_OUTPUT_DIRECTORY lib-static RUNTIME_OUTPUT_DIRECTORY lib-static)
     set_finufft_options(finufft_static)
     target_link_libraries(finufft_static PUBLIC finufft_f32 finufft_f64)
     # windows does not have a math library, so we need to exclude it
