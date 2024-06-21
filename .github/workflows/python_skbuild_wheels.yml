@@ -29,7 +29,10 @@ jobs:
             CXX=g++-14
             MACOSX_DEPLOYMENT_TARGET=13
 
+      - name: change python tag and abi tag
+        run: python -m pip wheel tags --python-tag=py3 --abi-tag=none ./wheelhouse/*.whl
+
       - uses: actions/upload-artifact@v4
         with:
           name: cibw-wheels-${{ matrix.os }}-${{ strategy.job-index }}
-          path: ./wheelhouse/*.whl
+          path: ./wheelhouse/*none*.whl
