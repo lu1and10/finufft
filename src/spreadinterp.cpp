@@ -1101,7 +1101,9 @@ FINUFFT_NEVER_INLINE void spread_subproblem_1d_kernel(
     // using uint8_t in loops to favor unrolling.
     // Most compilers limit the unrolling to 255, uint8_t is at most 255
     for (uint8_t j{0}; j < simd_size; ++j) {
+      #ifdef __GNUC__
       __builtin_prefetch(trg[j]);
+      #endif
       // initializes a dd_pt that is const
       // should not make a difference in performance
       // but is a hint to the compiler that after the lambda
