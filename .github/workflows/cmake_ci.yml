@@ -69,8 +69,13 @@ jobs:
           cmake --build ./build --config ${{matrix.build_type}}
 
       - name: Test
+        shell: bash
         working-directory: ./build
         run: |
+          if [[ "${{ matrix.os }}" == "windows-2022" ]]
+          then
+            cp lib/* .
+          fi
           ctest -C ${{matrix.build_type}}
 
       # may change to cpack and action-gh-release later
@@ -78,7 +83,9 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: ${{matrix.os}}-${{matrix.compiler}}-finufft-lib
-          path: ${{runner.workspace}}/finufft/build/*finufft*
+          path: |
+            ${{runner.workspace}}/finufft/build/*finufft*
+            ${{runner.workspace}}/finufft/build/*lib*
 
       - name: Pack For Release
         if: startsWith(github.ref, 'refs/tags/') && github.event_name == 'release' && github.event.action == 'published'
@@ -87,7 +94,7 @@ jobs:
           cd build
           if [[ "${{ matrix.os }}" == "windows-2022" ]]
           then
-            7z a ../${{matrix.os}}-${{matrix.compiler}}-finufft-lib.zip *finufft*
+            7z a ../${{matrix.os}}-${{matrix.compiler}}-finufft-lib.zip *lib*
           else
             tar czvf ../${{matrix.os}}-${{matrix.compiler}}-finufft-lib.tar.gz *finufft*
           fi
@@ -99,3 +106,7 @@ jobs:
         with:
           files: |
             *-finufft-lib*
+
+      - name: Setup tmate session
+        if: ${{ failure() }}
+        uses: mxschmitt/action-tmate@v3
