@@ -89,7 +89,15 @@ config-settings = {"cmake.define.FINUFFT_ARCH_FLAGS" = "-march=x86-64", "cmake.d
 
 [tool.cibuildwheel.linux]
 archs = "x86_64"
-before-all = "yum install -y fftw3-devel devtoolset-13-gcc devtoolset-13-gcc-c++ devtoolset-13-binutils"
+before-all = """
+yum install -y centos-release-scl
+yum install -y fftw3-devel
+yum install -y devtoolset-13-gcc
+yum install -y devtoolset-13-gcc-c++
+yum install -y devtoolset-13-binutils
+echo "source /opt/rh/devtoolset-13/enable" >> /etc/profile.d/devtoolset-13.sh
+source /opt/rh/devtoolset-13/enable
+"""
 
 [tool.cibuildwheel.windows]
 archs = "AMD64"
