@@ -17,7 +17,7 @@ jobs:
         run: |
           pip install --upgrade pip
           pip install pip-tools
-          pip-compile --all-build-deps python/finufft/pyproject.toml -o requirements.txt
+          pip-compile -v --all-build-deps python/finufft/pyproject.toml -o requirements.txt
           echo pytest >> requirements.txt
           sed -i -E 's/(==|>=|<=|>|<|~=|!=).*//' requirements.txt
           cat requirements.txt
