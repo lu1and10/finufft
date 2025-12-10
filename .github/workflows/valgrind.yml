@@ -40,4 +40,4 @@ jobs:
           CTEST_MEMORYCHECK_COMMAND: valgrind
           CTEST_MEMORYCHECK_COMMAND_OPTIONS: "--leak-check=full --show-leak-kinds=definite,possible --errors-for-leak-kinds=definite"
         run: |
-          ctest -T memcheck --output-on-failure -j
+          ctest -VV -T memcheck --output-on-failure -j
