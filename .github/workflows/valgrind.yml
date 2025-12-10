@@ -40,4 +40,4 @@ jobs:
       - name: Memcheck (CTest)
         working-directory: ./build
         run: |
-          ctest -T memcheck --output-on-failure -j
+          ctest -VV -T memcheck --output-on-failure -j
