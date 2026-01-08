@@ -220,6 +220,10 @@ jobs:
             done
           done
 
+      - name: Setup tmate session
+        if: ${{ failure() }}
+        uses: mxschmitt/action-tmate@v3
+
   cleanup:
     runs-on: ubuntu-22.04
     needs: cmake-ci
