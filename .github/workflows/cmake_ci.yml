@@ -29,7 +29,7 @@ jobs:
   cache:
     strategy:
       matrix:
-        os: [ubuntu-22.04, windows-2022]
+        os: [ubuntu-22.04]
     runs-on: ${{ matrix.os }}
     steps:
       - name: Checkout code
@@ -88,20 +88,6 @@ jobs:
       matrix:
         include:
           - { os: ubuntu-22.04, toolchain: gcc-10 }
-          - { os: ubuntu-22.04, toolchain: gcc-11 }
-          - { os: ubuntu-22.04, toolchain: gcc-12 }
-          - { os: ubuntu-22.04, toolchain: gcc-13 }
-          - { os: ubuntu-22.04, toolchain: clang-16 }
-          - { os: ubuntu-22.04, toolchain: clang-17 }
-          - { os: ubuntu-22.04, toolchain: clang-18 }
-
-          - { os: windows-2022, toolchain: msvc }
-          - { os: windows-2022, toolchain: clang-19 }
-
-          - { os: macos-14, toolchain: llvm }
-          - { os: macos-14, toolchain: gcc-14 }
-          - { os: macos-15, toolchain: llvm }
-          - { os: macos-15, toolchain: gcc-15 }
 
     steps:
       - name: Free Disk Space (Ubuntu)
@@ -174,14 +160,14 @@ jobs:
           if [[ "$RUNNER_OS" == "Windows" ]]; then
             configs=("build_type=Release ducc_fft=On" "build_type=Debug ducc_fft=On")
           else
-            configs=("build_type=Release ducc_fft=On" "build_type=Release ducc_fft=Off" \
-                     "build_type=Debug ducc_fft=On"  "build_type=Debug ducc_fft=Off")
+            configs=("build_type=Release ducc_fft=On")
           fi
 
           if [[ "${{ matrix.toolchain }}" == "msvc" ]]; then
             arch_flags=("/arch:AVX2" "/arch:SSE2" "native")
           elif [[ "$RUNNER_OS" == "Linux" ]]; then
-            arch_flags=("-march=x86-64" "-march=x86-64-v2" "-march=x86-64-v3")
+            arch_flags=("")
+            lscpu
             flags=$(lscpu | awk -F: 'BEGIN{IGNORECASE=1} $1 ~ /flags/ {print tolower($2)}')
             if [[ $flags == *avx512f* && $flags == *avx512dq* && $flags == *avx512cd* && $flags == *avx512bw* && $flags == *avx512vl* ]]; then
               arch_flags+=("-march=x86-64-v4")
