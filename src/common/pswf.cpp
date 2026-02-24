@@ -1050,7 +1050,7 @@ double prolate0_int_eval(double c, double r) {
 double pswf(double c, double x) {
   if (std::abs(x) > 1.0) return 0.0; // restrict support to [-1,1]
 
-  return prolate0_eval(c, x) / prolate0_eval(c, 0.0);
+  return prolate0_eval(c, x);
 }
 
 } // namespace finufft::common
